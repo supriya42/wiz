@@ -1,0 +1,7 @@
+{
+  "name": "Wizdiary",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

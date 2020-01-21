@@ -1,0 +1,124 @@
+<ion-header>
+ <app-header></app-header>
+ <app-bill></app-bill>
+</ion-header>
+
+<ion-content>
+  <div class="main content-box" [ngClass]="{'padding60': showBillBoard == false}">
+    <div>
+        <h3>Post a billboard</h3>
+    </div>
+
+    <div>
+      <p class="head-p">Tips: Billboard images with aspects ratio of 848px x 280</p>
+    </div>
+
+    <div>
+      <h6>Bussiness name</h6>
+    </div>
+
+    <div>
+
+      <div class="picture-upload" (click)="presentActionSheet()">
+        <p *ngIf="confirmImage == undefined">
+        <ion-icon name="camera" style="font-size: 50px;" class="cam-icon2"></ion-icon> <br>
+        Upload Picture
+        </p>
+        <p *ngIf=" confirmImage != undefined"  (click)="presentActionSheet()">
+          <img src="{{billboardImg + confirmImage}}">
+        </p>
+      </div>
+
+      <div>
+        <ion-item>
+          <ion-input type="text" placeholder="Business Name" [(ngModel)]="businessName"></ion-input>
+        </ion-item>
+        <ion-item>
+          
+          <ion-input type="text" placeholder="Address" [(ngModel)]="address" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label >Status </ion-label>
+          <ion-select [(ngModel)]="status">
+            <ion-select-option value="enabled">Enable</ion-select-option>
+            <ion-select-option value="disabled">Disable</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label >Billboard type</ion-label>
+            <ion-select [(ngModel)]="billboardType" (ionChange)="BillType($event)">
+             <ion-select-option value="paid">Paid</ion-select-option>
+             <ion-select-option value="free">Non Paid</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <div class="main content-box" [ngClass]="{'padding60': showBillBoard == false}" [hidden]="hidepay">
+          <h3>Payment Plan</h3>
+          <ion-grid>
+              <ion-row>
+                  <ion-col size="4" *ngFor="let bp of planPrice">
+                      <div class="plan-data">
+                          <h6>{{bp.name}}</h6>
+                          <p>$ {{bp.price}} / Pay</p>
+                          <p *ngIf="bp.id == 1">$ 1.5 Processing</p>
+                          <p *ngIf="bp.id == 2">$ 1.0 Processing</p>
+                          <p *ngIf="bp.id == 3">$ 1.5 Processing</p>
+                          <button size="small" fill="block" (click)="PayNow(bp.id, bp.price)">Switch To..</button>
+                      </div>
+                  </ion-col>
+              </ion-row>
+          </ion-grid>
+      </div>
+
+        <ion-item>
+          <ion-button size="small" class="my-button3 btn1" style="float: right;" 
+          (click)="addBillboard(businessName, address, status, billboardType)">Add billboard</ion-button>
+        </ion-item>
+      </div>
+
+    </div>
+
+    <div>
+      <p class="head-p">Free Billboard will show only for 7 hours.</p>
+    </div>
+
+    <div class="btn" text-center>
+        
+        <ion-button size="small" color="dark" (click)="showBill()">Show Expired Billboard</ion-button>                 
+    </div>
+
+
+</div>
+
+<div class="group content-box">  
+      <ion-grid>
+          <ion-row *ngFor="let bi of myBill">
+              <ion-col size="5">
+                <h6>Billboard</h6>
+                <p>
+                  Name: {{bi.name}}<br>
+                  Type: {{bi.plan_type}}<br>
+                  Expiration Date: {{bi.subscription_end_time}}
+                </p>
+                
+              </ion-col>
+
+              <ion-col size="4">
+                  <img src="{{billboardImg + bi.image}}">
+              </ion-col>
+
+              <ion-col size="3" style="text-align: center;">    
+                  <ion-button class="btn1" size="small"   *ngIf="bi.status == 'disabled'" (click)="enableBill(bi.id)">Enable</ion-button>
+                  <ion-button class="btn1" size="small" *ngIf="bi.status == 'enabled'" (click)="disableBill(bi.id)">Disable</ion-button>
+                  <ion-button class="btn1" size="small" color="dark" (click)="deleteBill(bi.id)">Delete</ion-button>
+              </ion-col>
+            </ion-row>              
+        </ion-grid>
+</div>
+
+</ion-content>
+
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

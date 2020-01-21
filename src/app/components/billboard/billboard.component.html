@@ -1,0 +1,23 @@
+
+
+<ion-slides class="hide-on-keyboard-open" style="height: auto; " *ngIf="billBoradsData != undefined" pager="true"
+[options]="slideOpts">
+    <ion-slide *ngFor="let bill of billBoradsData">
+      <div>
+      <img src="{{billboardImg + bill.image}}">
+      
+          <div class="slider-p myOverlay">
+
+              <span style="float: left;">
+                  <span style="color: rgb(36, 35, 35);display: block;line-height: 18px;font-size: 15px;font-weight: bold;">{{bill.name}}<span style="display: none;">Shahzeib</span></span>
+                  <ion-button class="btn" size="small" style="background-color: #2AA440;" (click)="likeBillboard(bill.id)">
+                      <ion-icon name="thumbs-up"></ion-icon> &nbsp; Likes &#8226; {{bill.like_count}}</ion-button>
+                  <ion-button class="btn" (click)="shareViaSocial('',billboardImg + bill.image)"  size="small" color="dark"><ion-icon name="share"></ion-icon> &nbsp; Share</ion-button>
+              </span>
+              <span>
+                  <ion-icon name="camera" style="font-size: 50px;" class="cam-icon" (click)="toUploadBillboard()"></ion-icon>
+              </span>
+          </div>
+      </div>
+    </ion-slide>
+  </ion-slides>

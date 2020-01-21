@@ -1,0 +1,34 @@
+<app-header [HeadText]="htext"></app-header>
+<app-bill></app-bill>
+
+<ion-content>
+  <div class="main content-box" [ngClass]="{'padding60': showBillBoard == false}">
+		<h2>Images</h2>
+		<div style="border: 1px dashed grey;text-align: center;">
+						
+			<details>
+				<summary>
+					<ion-icon name="add-circle" style="font-size: 40px; color: #a9a9a9"></ion-icon>
+					<p class="add-album">Add Album </p>
+				</summary>
+				<div class="content-box">
+					<ion-input type="text" placeholder="Enter Caption" [(ngModel)]="caption"></ion-input>
+					<ion-input type="text" placeholder="Enter Title" [(ngModel)]="title"></ion-input>
+					<button ion-button block small color="dark" (click)="addPhotos(caption, title)">Add Photos</button>
+				</div>
+			</details>
+
+		</div>
+
+		<div *ngFor="let im of albumsImages">
+			<img src="{{gallerimgUrl + im.image_name}}" class="gal-img" (click)="viewImage(gallerimgUrl + im.image_name, im.caption)" (press)="pressEvent($event, im.id)">
+		</div>
+	</div>
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar style="text-align: center;">
+    <button ion-button style="background-color: #2AA440; width: 90%;" (click)="toPostJobs()">POST JOB</button>
+    
+  </ion-toolbar>
+</ion-footer>

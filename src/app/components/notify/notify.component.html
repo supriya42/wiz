@@ -1,0 +1,23 @@
+<!-- <div class="main content-box" [ngClass]="{'padding60': showBillBoard == false}" *ngIf="diaryData != null">
+  <h3>Diary notification</h3>
+  <div >
+    <ion-grid>
+      <ion-row *ngFor="let dn of diaryData" style="background-color: #f7f4f4; margin-bottom: 5px;" (click)="openSingleDiary(dn.diary_id)">
+        <ion-col col-2>
+            <img *ngIf="dn.profile_pic != null" src="{{profielImgUrl + dn.profile_pic}}" class="post-logo" item-left> 
+            <img *ngIf="dn.profile_pic == null" src="assets/imgs/noprofile.jpg" class="post-logo" item-left> 
+        </ion-col>
+        <ion-col col-10>
+          <p>{{dn.notification}}</p>
+        </ion-col>
+      </ion-row>
+      <br/> 
+    </ion-grid>
+  </div>
+</div> -->
+<ion-list>
+  <ion-item >
+    <ion-avatar></ion-avatar>
+    <ion-label>{{diaryData.message}}</ion-label>
+  </ion-item>
+</ion-list>

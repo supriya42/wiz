@@ -1,0 +1,46 @@
+<ion-header>
+  <app-header [HeadText]="htext"></app-header>
+  <app-bill></app-bill>
+</ion-header>
+
+<ion-content>
+  <div class="main content-box" [ngClass]="{'padding60': showBillBoard == false}">
+
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Enter Group Name</ion-label>
+        <ion-input type="text" placeholder="Enter Group Name" [(ngModel)]="gName"></ion-input>
+      </ion-item>
+
+      <ion-item class="img-cam" (click)="chosePhoto()">
+        <p *ngIf="confirmImage == undefined">
+          <ion-icon name="camera"></ion-icon>
+          <br>
+          Upload Group Image
+        </p>
+        <img *ngIf="confirmImage != undefined" src="{{gropuImgs + confirmImage}}">
+      </ion-item>
+    </ion-list>
+
+    <div>
+      <ion-label>Search Users </ion-label>
+      <ion-input type="text" placeholder="Search Users" [(ngModel)]="useName"></ion-input>
+      <button block ion-button small style="background-color: #2AA440;" (click)="searchNow(useName)">Search</button>
+
+
+      <div *ngIf="returnNames.length > 0">
+        <ion-item>
+          <ion-label>Users:</ion-label>
+          <ion-select [(ngModel)]="selectId"   *ngFor="let rn of returnNames" multiple="true">
+            <ion-select-option value="{{rn.id}}">{{rn.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-button fill="block" size="small" color="dark" (click)="selectedUser(gName, selectId)">Create Group</ion-button>
+      </div>
+    </div>
+  </div>
+
+</ion-content>
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

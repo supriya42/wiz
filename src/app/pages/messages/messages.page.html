@@ -1,0 +1,47 @@
+<ion-header>
+  <app-header [HeadText] = "headtext"></app-header>
+  <app-bill></app-bill>
+  <h4 style="display: inline-block;">Users Chat</h4>
+</ion-header>
+<ion-content> 
+      <div class="main content-box" [ngClass]="{'padding60': showBillBoard == false}">
+        <div>
+          <p style="display: inline-block;" (click)="toNewGroup()">
+            <ion-icon name="person-add"></ion-icon> New Group
+          </p>
+          <ion-list>
+            <ion-item *ngFor="let um of getMessages" (click)="openchat(um.user_from_id, um.user_to_id,um.username)">
+              <ion-avatar slot="start">
+                <img *ngIf="um.profile_pic == undefined" [src]="noproimg">
+                <img *ngIf="um.profile_pic != undefined" src="{{profielImgUrl + um.profile_pic}}">
+              </ion-avatar>
+              <h5>{{um.name}}</h5>
+            </ion-item>
+          </ion-list>
+        </div>
+    
+        <div>
+         <!--  <div class="new-grp" (click)="toNewGroup()">
+                    <ion-icon name="add-circle" style="font-size: 20px; color: #a9a9a9"></ion-icon>
+                    <p class="add-album">Create Group</p>
+          </div> -->
+          <ion-list>
+            <ion-item *ngFor="let gm of getGroup">
+              <ion-avatar item-start (click)="openGroup(gm.group_id)">
+                <img *ngIf="gm.image == undefined" [src]="noproimg">
+                <img *ngIf="gm.image != undefined" src="{{gImg + gm.image }}">
+              </ion-avatar>
+              <p class="group-name-cl" (click)="openGroup(gm.group_id)">{{gm.name}}</p>
+              <p class="group-icon" (click)="editGroup(gm.group_id)"><ion-icon name="create"></ion-icon></p>
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>    
+    </ion-content>
+    
+    <ion-footer>
+      <ion-toolbar style="text-align: center;">
+        <button ion-button style="background-color: #2AA440; width: 90%;" (click)="toPostJobs()">POST JOB</button>
+        
+      </ion-toolbar>
+    </ion-footer>

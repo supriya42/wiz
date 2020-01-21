@@ -1,0 +1,83 @@
+<ion-header>
+    <app-header></app-header>
+    <app-bill></app-bill>
+</ion-header>
+
+<ion-content>
+
+
+     
+    <div class="main content-box" [ngClass]="{'padding60': showBillBoard == false}">
+        <div>
+            <h3>Post a Job Ad</h3>
+        </div>
+
+        <div>
+
+          <div>
+            <ion-item>
+              <ion-input type="text" placeholder="Job Title" [(ngModel)]="jobTitle"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="text" placeholder="Job Description" [(ngModel)]="description"></ion-input>
+            </ion-item>
+
+             <ion-item>
+              <ion-input type="text" placeholder="Address" [(ngModel)]="address"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label >Status </ion-label>
+              <ion-select [(ngModel)]="status">
+                <ion-select-option value="enabled">Enable</ion-select-option>
+                <ion-select-option value="disabled">Disable</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-label >Ad type</ion-label>
+                <ion-select [(ngModel)]="adType">
+                 <ion-select-option value="paid">Paid</ion-select-option>
+                 <ion-select-option value="free">Non Paid</ion-select-option>
+                </ion-select>
+            </ion-item>
+            
+              <ion-button expand="block"  class="my-button3" (click)="addJobAd(jobTitle, description, address, status, adType)">
+                  Add Job</ion-button>
+          </div>
+        </div>
+
+        <div>
+          <p class="head-p">Free Job Ad will show only for 7 hours.</p>
+        </div>
+
+      </div>
+
+        <div class="group content-box">  
+            <ion-grid>
+              <h6>Job Ads</h6>
+              <ion-row *ngFor="let bi of myPostedJobs">
+                <ion-col col-7>
+                  
+                  <p>
+                  Name: {{bi.title}}<br>
+                  Type: {{bi.plan_type}}<br>
+                  Expiration Date: {{bi.subscription_end_time}}
+                  </p>
+
+                </ion-col>
+                  <ion-col col-5 style="text-align: center;">    
+                  <button ion-button small style="background-color: #2AA440;"  *ngIf="bi.status == 'disabled'" (click)="enableBill(bi.id)">Enable</button>
+                  <button ion-button small  style="background-color: #2AA440;"  *ngIf="bi.status == 'enabled'" (click)="disableBill(bi.id)">Disable</button>
+                  <button ion-button small color="dark" (click)="deleteJob(bi.id)">Delete</button>
+                </ion-col>
+              </ion-row>              
+          </ion-grid>
+        </div>
+
+
+</ion-content>
+<ion-footer>
+    <app-footer></app-footer>
+  </ion-footer>

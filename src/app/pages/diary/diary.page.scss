@@ -1,0 +1,233 @@
+ion-toolbar {
+  --background:#2aa440;
+  // --ion-color-base: transparent !important;
+  --color: white;
+}
+
+
+
+
+.post-logo{
+  // --width: 20px;
+  // --height: 20px;
+  // --border-radius: 50%;
+}
+.item-inner{
+  --border-bottom: none!important;
+}
+.input-share{
+  --border: 1px solid lightgrey;
+  --border-radius: 10px;
+  --text-indent: 5px;
+}
+hr{
+  --height: 1px!important;
+}
+h4{
+  --color:  #2AA440;
+}
+.my-name ion-label{
+  --white-space: inherit;
+}
+.message_row {
+      --background-color: #fff;
+}
+
+.cam-icon {
+  --background: #4aa541;
+  --border-radius: 35px;
+  --color: #fff;
+  --width: 45px;
+  --height: 45px;
+  --line-height: 45px;
+--font-size: 24px !important;
+--margin-top: 13px;
+}
+.img-text {
+  --display: block;
+  --font-size: 10px;
+  --color: #333;
+}
+.button-cam {
+    --padding: 0;
+    --height: 46px;
+    --margin: 0;
+    --text-align: center;
+}
+.button-cam span.button-inner {
+    --width: auto;
+    --display: block;
+}
+.button-cam .img-text {
+    --display: block;
+    --font-size: 7px;
+    --color: #333;
+    --margin-top: 4px;
+}
+// .myshareing 
+.input-main {
+    border:  solid #e6e6e6;
+    border-radius: 25px;
+    font-size: 12px;
+    height: 47px;
+    line-height: 20px;
+    padding-left: 10px;
+}
+.def-btn {
+    --padding: 10px 30px;
+    //float: right;
+    --border-radius: 0;
+    --box-shadow: none;
+    --display: inline-block;
+}
+.content-box {
+  --padding-right: 5px;
+  --padding-left: 5px;
+}
+.no-padding {
+  --padding: 0px;
+}
+.no-margin {
+  --margin: 0px;
+}
+.imgheight{
+  height:85px;
+  // weight:200px;
+}
+.card-box .card {
+  --padding: 0px;
+  -webkit-box-shadow: none;
+  --box-shadow: none;
+  --width: 100%;
+  --margin-top: 30px;
+  --position: relative;
+}
+.card-box .avatar-img img {
+    --border-radius: 50px;
+    --overflow: hidden;
+}
+.card-box p.content-text {
+    --font-size: 12px;
+    --line-height: 20px;
+    --margin-bottom: 10px;
+    --margin-top: 10px;
+    --color: #666;
+}
+.main-heading {
+    --margin: 0px;
+    --font-size: 16px;
+    --margin-bottom: 10px;
+    --margin-top: 20px;
+}
+.comnt-box {
+    --border-top: 1px solid #efefef;
+    --border-bottom: 1px solid #efefef;
+}
+.comnt-box button {
+    --padding: 0;
+    --color: #666;
+    --margin: 0;
+    --text-align: center;
+    --width: 10%;
+    --font-size: 12px;
+    cursor: pointer;
+}
+.comnt-box.comnt-img {
+  --position: relative;
+  --background: #000 !important;
+  --bottom: 0px;
+  --width: 100%;
+  --border: 0px;
+  --z-index: 9999!important;
+  --background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%, rgba(0,0,0,0.65) 102%);
+  --background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%,rgba(0,0,0,0.65) 102%);
+  --background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%,rgba(0,0,0,0.65) 102%);
+  --filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 );
+}
+.comnt-box.comnt-img button {
+  --color: #fff;
+}
+.view-comnt {
+  --content: "";		
+}
+
+.view-comnt p{
+  color: #666;
+  // line-height: 10px;
+  margin-top: 1px;
+}
+
+.bg-gray {
+  --background-color: #f8f8f8;
+}
+.avatar-img {
+    border-radius: 50px;
+    height: 50px;
+    object-fit: cover;
+    width: 10px;
+}
+.input-insrt input {
+  line-height: 20px;
+}
+.input-insrt ion-icon {
+  position: absolute;
+  right: 22px;
+  top: 13px;
+  font-size: 27px;
+  color: #333;
+}
+.insrt-comnt {
+  margin-top: 5px;
+}
+.button-cam ion-icon {
+    font-size: 29px !important;
+    color: #666;
+    margin-top: 6px;
+}
+.img-cont-box {
+  position: relative;
+}
+.my-name {
+    height: 70px;
+}
+.text{
+  white-space: pre;
+  font-size: 60%;
+  color: rgb(54, 53, 53);
+}
+.btntext{
+  font-size: 70%;
+}
+.avatar  {     
+  max-width: 25px;
+  max-height: 25px; 
+  }
+
+  ion-content {
+    // overwrite inline styles
+    --offset-bottom: auto!important;
+    --overflow: hidden;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .btn {
+    --background: var(--ion-color-btn);
+    //  margin-top: 15%;
+     color: white;
+   }
+   ion-toolbar {
+    --background:#2aa440;
+    // --ion-color-base: transparent !important;
+    --color: white;
+  }
+  .borderdiv{
+    background-color: rgb(253, 247, 247);
+    // border-style: solid;
+    // opacity: 0.2;
+    // filter: alpha(opacity=50);
+  }
+  .card{
+   --border-radius: 20px 20px 0px 0px;
+  }

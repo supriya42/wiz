@@ -1,0 +1,32 @@
+<ion-header>
+  <app-header></app-header>
+  <app-bill></app-bill>
+</ion-header>
+
+<ion-content>
+    <div class="main content-box" [ngClass]="{'padding60': showBillBoard == false}">
+
+        <ion-item>
+          <ion-input type="text" placeholder="Name" [(ngModel)]="name"></ion-input>
+        </ion-item>
+        <br>
+    
+        <ion-item>
+          <ion-input type="email" placeholder="Email" [(ngModel)]="email"></ion-input>
+        </ion-item>
+        <br>
+    
+        <ion-item>
+          <ion-textarea type="text" row="7" placeholder="Message" [(ngModel)]="message"></ion-textarea>
+        </ion-item>
+            
+      </div>
+        <br>
+        <div class="content-box">
+          <ion-button block (click)="submit(name, email, message)" class="submit-btn">SUBMIT</ion-button>
+        </div> 
+    
+</ion-content>
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

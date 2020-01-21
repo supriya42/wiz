@@ -1,0 +1,80 @@
+<ion-header>
+  <!-- <app-header [HeadText]="htext"></app-header> -->
+  <ion-toolbar class="bgcolor">
+    <ion-buttons slot="start">
+      <ion-back-button style="color:white;">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>{{this.htext}}</ion-title>
+  </ion-toolbar>
+  
+  <app-bill></app-bill>
+</ion-header>
+<ion-content>
+  
+    <h5>Message</h5>
+  <div class="content-box" [ngClass]="{'padding60': showBillBoard == false}">
+
+    <ion-grid>
+      <ion-row *ngFor="let message of chats">
+        <ion-col size="9" *ngIf="message.user_from_id != userId" class="message"
+          [ngClass]="{'my_message': message.user_from_id == userId, 'other_message': message.user_from_id != userId}">
+          <span style="display: inline-block;width: 100%;"
+            [ngClass]="{'my_message': message.user_from_id == userId, 'other_message': message.user_from_id != userId}">{{ message.user_from_name }}:
+            <span style="float:right;font-size: 10px;">{{message.message_date | date}}</span>
+          </span><br>
+          <span *ngIf="message.message != null">{{ message.message }}</span>
+          <span *ngIf="message.file != null">
+            <span *ngIf="isImage(message.file) == true">
+              <img src="{{groupMediaUrl + message.file}}" />
+            </span>
+            <span *ngIf="isImage(message.file) == false">
+              <video src="{{groupMediaUrl + message.file}}" controls style="width: 100%;"></video>
+            </span>
+          </span>
+          <div class="time">{{message.created_at}}</div>
+        </ion-col>
+
+        <ion-col offset-3 size="9" *ngIf="message.user_from_id == userId" class="message"
+          [ngClass]="{'my_message': message.user_from_id  == userId, 'other_message': message.user_from_id  != userId}">
+          <span style="display: inline-block;width: 100%;"
+            [ngClass]="{'my_message': message.user_from_id  == userId, 'other_message': message.user_from_id  != userId}">{{ message.user_from_name }}:
+            <span style="float:right;font-size: 10px;">{{message.message_date | date}}</span>
+          </span><br>
+          <span *ngIf="message.message != null">{{ message.message }}</span>
+          <span *ngIf="message.file != null">
+            <span *ngIf="isImage(message.file) == true">
+              <img src="{{groupMediaUrl + message.file}}" />
+            </span>
+            <span *ngIf="isImage(message.file) == false">
+              <video src="{{groupMediaUrl + message.file}}" controls style="width: 100%;"></video>
+            </span>
+          </span>
+          <div class="time">{{message.created_at}}</div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-row class="message_row">
+      <ion-col size="8">
+        <ion-item no-lines>
+          <ion-textarea type="text" placeholder="Message" [(ngModel)]="newMessage"></ion-textarea>
+        </ion-item>
+      </ion-col>
+      <ion-col size="1">
+        <ion-button fill="clear" color="primary" (click)="presentActionSheet()">
+          <ion-icon name="camera"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col size="3" class="sendbtn">
+        <ion-button fill="clear" color="primary" (click)="sendMessage(newMessage)" [disabled]="newMessage === ''">
+          <ion-icon name="send"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

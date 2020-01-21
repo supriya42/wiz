@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "717586353047",
+    "firebase_url": "https://fir-45734.firebaseio.com",
+    "project_id": "fir-45734",
+    "storage_bucket": "fir-45734.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:717586353047:android:da7e66f3a5b415eaaa52d2",
+        "android_client_info": {
+          "package_name": "com.wizdiary.wiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "717586353047-gdnd7sruebrr7a6c6jecclj5njj7ev2o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAd4IyX0MitzGKeEMqufkQOgG5Dgq7hB2c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "717586353047-gdnd7sruebrr7a6c6jecclj5njj7ev2o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

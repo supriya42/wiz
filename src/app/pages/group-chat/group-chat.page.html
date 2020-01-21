@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>group_chat</ion-title>
+  </ion-toolbar>
+  <div class="imgheight">
+      <ion-slides ion-fixed style="height: auto; max-height: 40%;" *ngIf="billBoradsData.length > 0 && showBillBoard == false" autoplay="5000" loop="true" speed="500">
+          <ion-slide *ngFor="let bill of billBoradsData">
+            <div>
+            <img src="{{billboardImg + bill.image}}">
+            
+              <div class="slider-p">
+      
+                <span style="float: left;">
+                  <span style="color: #fff;display: block;line-height: 18px;font-size: 15px;font-weight: bold;">{{bill.name}}<span style="display: none;">Shahzeib</span></span>
+                  <button ion-button small style="background-color: #2AA440;" (click)="likeBillboard(bill.id)">
+                    <ion-icon name="thumbs-up"></ion-icon> &nbsp; Likes &#8226; {{bill.like_count}}</button>
+                  <button (click)="shareViaSocial(billboardImg + bill.image)" ion-button small color="dark"><ion-icon name="share"></ion-icon> &nbsp; Share</button>
+                </span>
+                <span>
+                  <ion-icon name="camera" style="float: right;font-size: 50px;" class="cam-icon" (click)="toUploadBillboard()"></ion-icon>
+                </span>
+              </div>
+            </div>
+          </ion-slide>
+        </ion-slides>  
+  </div>
+</ion-header>
+
+<ion-content>
+    
+      <div class="content-box" [ngClass]="{'padding60': showBillBoard == false}">
+        <ion-grid>
+          <ion-row *ngFor="let message of messages">
+            
+            <ion-col col-9 *ngIf="message.user_from_id != userId" class="message" [ngClass]="{'my_message': message.user_from_id == userId, 'other_message': message.user_from_id != userId}">
+              <span class="user_name">{{ message.name }}:</span><br>
+              
+              <span *ngIf="message.message != ''">{{ message.message }}</span>
+              <span *ngIf="message.file != ''"><img src="{{groupMediaUrl+message.file}}"></span>
+              <!-- <div class="time">{{message.created | date:'dd.MM hh:mm'}}</div> -->
+            </ion-col>
+       
+            <ion-col offset-3 col-9 *ngIf="message.user_from_id == userId" class="message" [ngClass]="{'my_message': message.user_from_id == userId, 'other_message': message.user_from_id != userId}">
+              <span [ngClass]="{'my_message': message.user_from_id == userId, 'other_message': message.user_from_id != userId}">{{ message.name }}:</span><br>
+              <span *ngIf="message.message != ''">{{ message.message }}</span>
+              <span *ngIf="message.file != ''"><img src="{{groupMediaUrl+message.file}}"></span>
+              <!-- <div class="time">{{message.created | date:'dd.MM hh:mm'}}</div> -->
+            </ion-col>
+       
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ion-content>
+    
+    <ion-footer>
+      <ion-toolbar>
+        <ion-row class="message_row">
+          <ion-col col-9>
+            <ion-item no-lines>
+              <ion-input type="text" placeholder="Message" [(ngModel)]="newMessage"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-1>
+            <button ion-button clear color="primary" (click)="chosePhoto()">
+             <ion-icon name="camera"></ion-icon>
+          </button>
+          </ion-col>
+          <ion-col col-2 class="sendbtn">
+            <button ion-button clear color="primary" (click)="sendMessage(newMessage)" [disabled]="newMessage === ''">
+            <ion-icon name="send"></ion-icon>
+          </button>
+          </ion-col>
+        </ion-row>
+      </ion-toolbar>
+    </ion-footer>
+    

@@ -1,0 +1,72 @@
+ion-toolbar {
+    --background:#2aa440;
+    // --ion-color-base: transparent !important;
+    --color: white;
+  }
+  .main{
+		margin-top: 6%;
+	}
+	.main h5{
+		color: #2AA440;
+	}
+	.footer{
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+
+	}
+	.post-btn{
+		width: 90%;
+		background-color: #2AA440;
+		display: inline-block;
+	}
+	.slider-p{
+		position: absolute;
+		width: 100%;
+		padding: 10px 20px;
+		margin: 0;
+		bottom: 0;
+		line-height: 43px;
+	}
+	.cam-icon {
+	    background: #4aa541;
+	    border-radius: 35px;
+	    color: #fff;
+	    width: 45px;
+	    height: 45px;
+	    line-height: 45px;
+		font-size: 24px !important;
+		margin-top: 13px;
+	}
+	.content-box {
+		padding-right: 20px;
+		padding-left: 20px;
+	}
+	.new-grp{
+		text-align: center;
+		border-top: 1px solid lightgrey;
+		border-bottom: 1px solid lightgrey;
+		font-size: 20px;
+
+	}
+	.add-album{
+		margin: 0;
+	    font-size: 16px;
+	    color: gray;
+	}
+	summary::-webkit-details-marker {
+	  display: none
+	}
+
+	.group-name-cl{
+		display: inline-block;
+		width: 80%; 
+		font-size: 18px;
+		color: #4aa541;
+	}
+	.group-icon{
+		display: inline-block;
+		width: 20%;
+		font-size: 25px;
+		color: #4aa541;
+	}

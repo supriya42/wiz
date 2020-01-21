@@ -1,0 +1,32 @@
+<ion-header>
+  <app-header [HeadText]="htext"></app-header>
+  <app-bill></app-bill>
+</ion-header>
+
+<ion-content>
+  <div class="main content-box" [ngClass]="{'padding60': showBillBoard == false}">
+		<h3>Posted Job</h3>
+        <div>
+          <ion-grid>
+            <ion-row *ngFor="let pj of jobsData">
+              <ion-col size="9">
+                 <p>
+                 	{{pj.title}}<br>
+                 	{{pj.description}}
+                 </p>
+              </ion-col>
+              <ion-col size="3">
+              	<p>
+                  <ion-button fill="block" size="small" style="background-color: #2AA440;" 
+                  (click)="shareJobsViaSocial('https://wizdiary.com/job/'+pj.id)">Share</ion-button>
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+	</div>
+
+
+
+
+</ion-content>

@@ -1,0 +1,202 @@
+<ion-header>
+  <app-header ></app-header>
+  <app-bill></app-bill>
+</ion-header>
+
+<ion-content>  
+  <ion-refresher (ionRefresh)="doRefresh($event)"
+  (ionPull)="doPull($event)" >
+    <ion-refresher-content 
+    pullingIcon="arrow-dropdown"
+    pullingText="Pull to refresh"
+    refreshingSpinner="circles"
+    refreshingText="Refreshing...">
+
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div class="content-box" [ngClass]="{'padding60': showBillBoard == false}">
+    <ion-grid>
+      <ion-row class="message_row">
+        <ion-col size="2">
+          <ion-avatar class="avatar">
+            <img src="{{profielImgUrl + myuserImg}}" class="post-logo" style="margin-top: -2%;"
+              *ngIf="myuserImg != null || myuserImg != undefined">
+            <img [src]="noproimg" class="post-logo" style="margin-top: -2%;"
+              *ngIf="myuserImg == null || myuserImg == undefined">
+          </ion-avatar>
+        </ion-col>
+
+        <ion-col size="8" >
+          <ion-textarea class="input-main"  placeholder="Write Your Story" [(ngModel)]="myshare">
+          </ion-textarea>
+        </ion-col>
+
+        <ion-col size="2">
+          <ion-buttons>
+          <ion-button fill="clear" color="dark" class="button-cam" (click)="presentActionSheet()">
+            <ion-icon name="images" style="font-size: 35px;" ></ion-icon>
+            <!-- <ion-label class="img-text">Photo / Video</ion-label> -->
+          </ion-button>
+        </ion-buttons>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="9">
+          <img *ngIf="confirmImage != undefined && is_image == 1" src="{{diaryImgUrl + confirmImage}}"
+            style="width: 50px;">
+          <video *ngIf="confirmImage != undefined && is_image == 0" src="{{diaryImgUrl + confirmImage}}"
+            style="width: 50px;" autoplay="" controls=""></video>
+        </ion-col>
+        <ion-col size="3" class="no-padding">
+          <ion-button size="small" class="btn"  (click)="shareDiary(myshare)">Share</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <hr />
+
+  <div class="content-box card-box" *ngIf="userDataDiary != undefined">
+    <ion-card *ngFor="let di of userDataDiary; let ci = index;" class="no-margin">
+      <ion-card-header style="--border-radius: 10px 10px 0px 0px;">
+        <ion-item>
+          <ion-avatar slot="start">
+            <img *ngIf="di.profile_pic != null || di.profile_pic != undefined" src="{{profielImgUrl + di.profile_pic}}"
+            (click)="GotoProfile(di.username)">
+            <img *ngIf="di.profile_pic == null || di.profile_pic == undefined" [src]="noproimg"
+            (click)="GotoProfile(di.username)">
+          </ion-avatar>
+          <ion-label>
+             <h3>{{di.username}}</h3>
+             <ion-label text-wrap class="text">{{di.description}}</ion-label>
+          </ion-label>
+        </ion-item>
+      </ion-card-header>
+      <!-- <p class="content-text" [innerHTML]="di.description | linky"></p> -->
+      <div class="img-cont-box">
+        <img *ngIf="di.image_name != null && di.is_image == 1" src="{{diaryImgUrl + di.image_name}}"
+          style="height: auto;  min-height: 180px;  object-fit: cover;">
+        <video *ngIf="di.image_name != null && di.is_image == 0" src="{{diaryImgUrl + di.image_name}}"
+          style="height: auto; width: 100%; background: #000; margin-bottom: -3px;" controls=""></video>
+      </div>
+      <div class="borderdiv">
+      
+        <ion-row class="comnt-box comnt-img" *ngIf="di.image_name != null">
+          <ion-col size="4" >
+            <ion-button size="small" fill="clear" color="dark" text-capitalize>
+              <ion-icon color="medium" name="thumbs-up"></ion-icon>
+              <div (click)="diaryLikes(di.id)"*ngIf="di.id!=Likeid" class="btntext"> Likes* {{di.likes}}</div>
+              <div (click)="diaryLikes(di.id)"*ngIf="di.id==Likeid" class="btntext">Likes* {{diaryLike}}</div>
+            </ion-button>
+          </ion-col>
+
+          <ion-col size="4">
+            <ion-button fill="clear" size="small" (click)="showComment(di.id)" text-capitalize color="medium">
+              <ion-icon name="text"></ion-icon>
+              <ion-label  class="btntext">Comments</ion-label>
+              <!-- <div *ngFor="let dc of di['comments']">{{dc.comment}}</div> -->
+            </ion-button>
+          </ion-col>
+
+          <ion-col size="4">
+            <ion-button fill="clear" size="small" text-capitalize color="medium"
+              (click)="shareViaSocial(di.description,billboardImg + di.image_name)">
+              <ion-icon name="share"></ion-icon>
+              <div class="btntext">Share</div>
+              <!-- <div *ngFor="let dc of di['comments']">{{dc.comment}}</div> -->
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
+
+
+      <ion-row class="comnt-box borderdiv" *ngIf="di.image_name == null">
+        <ion-col size="4">
+          <ion-button fill="clear" size="small" text-capitalize color="dark">
+            <ion-icon color="medium" name="thumbs-up"></ion-icon>
+            <div (click)="diaryLikes(di.id)"*ngIf="di.id!=Likeid" class="btntext"> Likes* {{di.likes}}</div>
+            <div (click)="diaryLikes(di.id)"*ngIf="di.id==Likeid" class="btntext">Likes* {{diaryLike}}</div>
+          </ion-button>
+        </ion-col>
+
+        <ion-col size="4">
+          <ion-button fill="clear" size="small" (click)="showComment(di.id)" text-capitalize color="dark">
+            <ion-icon color="medium" name="text"></ion-icon>
+            <div class="btntext">Comments</div>
+            <!-- <div *ngFor="let dc of di['comments']">{{dc.comment}}</div> -->
+          </ion-button>
+        </ion-col>
+
+        <ion-col col-4>
+          <ion-button fill="clear" size="small" (click)="shareViaSocial(di.description, di.image_name)"
+          text-capitalize color="medium">
+            <ion-icon name="share"></ion-icon>
+            <div class="btntext">Share</div>
+            <!-- <div *ngFor="let dc of di['comments']">{{dc.comment}}</div> -->
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+
+      <div *ngIf="di.id == commentid">
+        <div class="comnt-box bg-gray" *ngFor="let dc of di['comments']">
+          <ion-grid class="view-comnt">
+            <ion-row>
+              <ion-col size="1" >
+                <ion-avatar >
+                  <img *ngIf="dc.profile_pic == null || dc.profile_pic == undefined" [src]="noproimg" class="avatar-img"
+                    class="avatar">
+                  <img *ngIf="dc.profile_pic != null || dc.profile_pic != undefined"
+                    src="{{profielImgUrl + dc.profile_pic}}" class="avatar">
+                </ion-avatar>
+              </ion-col>
+              <ion-col size="8" item-start>
+                <ion-card>
+                  <ion-label>{{dc.name}}</ion-label><br>
+                  <ion-label class="ion-text-wrap">{{dc.comment}}</ion-label>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+        <div>
+          <ion-grid class="insrt-comnt no-padding">
+            <ion-row>
+              <ion-col size="1">
+                <ion-avatar>
+                  <img *ngIf="myuserImg != null || myuserImg != undefined" src="{{profielImgUrl + myuserImg}}"
+                    class="avatar" >
+                  <img *ngIf="myuserImg == null || myuserImg == undefined" [src]="noproimg" class="avatar">
+                </ion-avatar>
+              </ion-col>
+              <ion-col size="6" class="input-insrt">
+                <ion-textarea type="text" placeholder="Write Comment" class="input-main"
+                 [(ngModel)]=di[ci]></ion-textarea>
+              </ion-col>
+              <ion-col size="2">
+                <ion-buttons>
+                  <ion-button (click)="diaryComment(di.id, di[ci])" >
+                    <ion-icon name="paper-plane" slot="icon-only"> </ion-icon>
+                  </ion-button>
+                </ion-buttons>
+              </ion-col>
+              <ion-col size="2" class="button-cam">
+                <ion-icon name="images" item-right style="font-size: 35px;" (click)="presentActionSheet()"></ion-icon>
+                <!-- <span class="img-text">Photo/Video</span> -->
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </div>
+    </ion-card>
+  </div>
+
+
+</ion-content>
+
+<!-- <ion-footer>
+  <ion-toolbar style="text-align: center;">
+    <ion-label style="background-color: #2AA440; width: 90%;" (click)="toPostJobs()">POST JOB</ion-label>
+  </ion-toolbar>
+</ion-footer> -->

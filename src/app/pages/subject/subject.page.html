@@ -1,0 +1,137 @@
+<ion-header>
+  <app-header [HeadText]="htext"></app-header>
+  <app-bill></app-bill>
+</ion-header>
+
+<ion-content>
+
+  <div class="main content-box" [ngClass]="{'padding60': showBillBoard == false}">
+
+    <h3>Subject Access Request Data</h3>
+
+    <div class="myDiv">
+      <div class="myhead" [ngClass]="{'headColor': billTab == true, 'myhead': billTab !== true }"
+        (click)="changeTab('billTab')">
+        Billboard
+      </div>
+      <div class="myhead" [ngClass]="{'headColor': diaryTab == true, 'myhead': diaryTab !== true }"
+        (click)="changeTab('diaryTab')">
+        Diary
+      </div>
+      <div class="myhead" [ngClass]="{'headColor': followTab == true, 'myhead': followTab !== true }"
+        (click)="changeTab('followTab')">
+        Following
+      </div>
+      <div class="myhead" [ngClass]="{'headColor': jobTab == true, 'myhead': jobTab !== true }"
+        (click)="changeTab('jobTab')">
+        Jobs
+      </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="billboard" *ngIf="billTab == true">
+
+      <div>
+        <h6>Your Paid Billboard</h6>
+        <ion-list>
+          <div *ngFor="let bil of billboard">
+            <ion-item *ngIf="bil.plan_type == 'paid'">
+
+              <ion-avatar slot="start">
+                <img *ngIf="bil.image == null" [src]="noproimg">
+                <img *ngIf="bil.image != null" src="{{billboardImg + bil.image}}">
+              </ion-avatar>
+              <p>{{bil.name}}</p>
+
+            </ion-item>
+          </div>
+        </ion-list>
+      </div>
+
+      <div>
+        <h6>Your Free Billboard</h6>
+        <ion-list>
+          <div *ngFor="let bil of billboard">
+            <ion-item *ngIf="bil.plan_type == 'free'">
+
+              <ion-avatar slot="start">
+                <img *ngIf="bil.image == null" [src]="noproimg">
+                <img *ngIf="bil.image != null" src="{{billboardImg + bil.image}}">
+              </ion-avatar>
+              <p>{{bil.name}}</p>
+
+            </ion-item>
+          </div>
+        </ion-list>
+      </div>
+
+
+      <div>
+        <h6>BillBoard Likes</h6>
+        <ion-list>
+          <div *ngFor="let bilike of billLikes">
+            <ion-item>
+              <ion-avatar slot="start">
+                <img *ngIf="bilike.image == null" [src]="noproimg">
+                <img *ngIf="bilike.image != null" src="{{billboardImg + bilike.image}}">
+              </ion-avatar>
+              <p>Your Liked Billboard.</p>
+
+            </ion-item>
+          </div>
+        </ion-list>
+      </div>
+    </div>
+
+
+    <div class="diary" *ngIf="diaryTab == true">
+      <ion-list>
+        <ion-item *ngFor="let di of diary">
+          <ion-avatar slot="start">
+            <img *ngIf="di.profile_pic == null" [src]="noproimg">
+            <img *ngIf="di.profile_pic != null" src="{{profielImgUrl + di.profile_pic}}">
+          </ion-avatar>
+          <p>{{di.notification}}</p>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div class="follow" *ngIf="followTab == true">
+      <ion-list>
+        <ion-item *ngFor="let fl of follow" (click)="ShowProfile(fl.username)">
+          <ion-avatar item-start >
+            <img *ngIf="fl.profile_pic == null" [src]="noproimg">
+            <img *ngIf="fl.profile_pic != null" src="{{profielImgUrl + fl.profile_pic}}">
+          </ion-avatar>
+          <p>{{fl.username}}</p>
+        </ion-item>
+      </ion-list>
+    </div>
+
+
+    <div class="job" *ngIf="jobTab == true">
+
+      <div *ngFor="let jb of jobs">
+        <div *ngIf="jb.plan_type == 'paid'">
+          <h6>Your Paid job</h6>
+          <p>Job title: <b>{{jb.title}}</b></p>
+          <p>Job title: <b>{{jb.description}}</b></p>
+        </div>
+      </div>
+      <div *ngFor="let jb of jobs">
+        <div *ngIf="jb.plan_type == 'free'">
+          <h6>Your Free job</h6>
+          <p>Job title: <b>{{jb.title}}</b></p>
+          <p>Job title: <b>{{jb.description}}</b></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

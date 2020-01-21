@@ -1,0 +1,17 @@
+<ion-header>
+  <app-header [HeadText]="htext"></app-header>
+  <app-bill></app-bill>
+</ion-header>
+
+<ion-content>
+    <div class="main content-box" [ngClass]="{'padding60': showBillBoard == false}">
+        <div [innerHTML]="cookiesData">
+          
+        </div>
+      </div>
+</ion-content>
+<!-- <ion-footer>
+    <ion-toolbar style="text-align: center;">
+      <button ion-button style="background-color: #2AA440; width: 90%;" (click)="toPostJobs()">POST JOB</button>
+    </ion-toolbar>
+  </ion-footer> -->

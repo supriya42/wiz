@@ -1,0 +1,88 @@
+ion-toolbar {
+    --background:#2aa440;
+    // --ion-color-base: transparent !important;
+    --color: white;
+  }
+    .main{
+          margin-top: 6%;
+      
+      }
+      h3{
+       color:#2AA440;   
+      }
+  
+      .myDiv{
+          background-color: #e2e0e0;
+          padding: 10px;
+          font-size: 16px;
+      }
+  
+       .myhead{
+          display: inline-block;
+          width: 30%;
+          text-align: center;
+          color: black;
+          font-size: 15px;
+       }
+       .headColor{
+          color: green;
+          display: inline-block;
+          width: 30%;
+          text-align: center;
+          font-weight: bold;
+          font-size: 15px;
+       }
+    .slider-p{
+      position: absolute;
+      width: 100%;
+      padding: 10px 20px;
+      margin: 0;
+      bottom: 0;
+      line-height: 43px;
+    }
+    .cam-icon {
+        background: #4aa541;
+        border-radius: 35px;
+        color: #fff;
+        width: 45px;
+        height: 45px;
+        line-height: 45px;
+      font-size: 24px !important;
+      margin-top: 13px;
+    }
+    .content-box {
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+      .btn{
+          margin-top: 20px;
+      }
+  
+      .my-button{
+          background: #4aa541;
+      }
+      .main ion-icon{
+          color: #4aa541;   
+      }
+      .main h3{
+          color: #4aa541;   
+      }
+      .profile-img{
+          width: 80px;
+      }
+      .btn1 {
+        --background: var(--ion-color-btn);
+        //  margin-top: 15%;
+         color: white;
+       }
+       ion-content {
+        // overwrite inline styles
+        --offset-bottom: auto!important;
+        --overflow: hidden;
+        overflow: auto;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+  
+  

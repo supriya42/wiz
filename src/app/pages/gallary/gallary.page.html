@@ -1,0 +1,40 @@
+<ion-header>
+ <app-header [HeadText]="htext"></app-header>
+ <app-bill></app-bill>
+</ion-header>
+
+<ion-content> 
+  
+  
+      <div class="content-box main" [ngClass]="{'padding60': showBillBoard == false}">
+          <h2>Gallery / Albums</h2>
+          <div style="border: 1px dashed grey;text-align: center;">
+                          
+              <details>
+                  <summary>
+                      <ion-icon name="add-circle" style="font-size: 40px; color: #a9a9a9"></ion-icon>
+                      <p class="add-album">Add Album </p>
+                  </summary>
+                  <div class="content-box">
+                      <ion-input type="text" [(ngModel)]="albumName" placeholder="Enter Album Name"></ion-input>
+                      <ion-button fill="block" size="small" color="dark" (click)="addAlbum(albumName)">Add Album</ion-button>
+                  </div>
+              </details>
+  
+          </div>
+          
+          <div *ngIf="myAlbums != undefined">
+              <button ion-item  *ngFor="let al of myAlbums"  (click)="pressEvent($event, al.id)">
+                {{al.album_name}}
+              </button>
+          </div>
+          <div *ngFor="let im of albumsImages">
+            <img src="{{gallerimgUrl + im.image_name}}" class="gal-img" (click)="viewImage(gallerimgUrl + im.image_name, im.caption)" (press)="pressEvents($event, im.id)">
+          </div>
+  
+          
+      </div>
+  </ion-content>
+  <ion-footer>
+    <app-footer></app-footer>
+  </ion-footer>

@@ -1,0 +1,57 @@
+<ion-header>
+  <app-header [HeadText]="htext"></app-header>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="main">
+    <img [src]="noproimg" />
+    <!-- <img *ngIf="userPic != null" src="{{profielImgUrl + userPic}}" class="cam-img" /> -->
+  </div>
+  <hr />
+
+  <div  *ngIf="userData != undefined" class="user-details">
+    <p>Company Name: <span>{{userData.name}}</span></p>	
+      <p>Startup Date: <span>{{startDate}}</span></p>	
+      <p>Designation: <span>{{userData.designation}}</span></p>	
+    <p>About Business: <span text-wrap>{{userData.about_business}}</span></p>
+     <p>Business Industry: <span>{{userData.business_industry}}</span></p>
+
+    <p style="text-align: right;">
+      <ion-button
+        fill="clear"
+        style="color: #2AA440;"
+        (click)="toPrivateProfile()"
+        >Click to View Private Profile
+      </ion-button>
+
+      <ion-button
+        color="dark"
+        size="small"
+        style="width: 40%; font-size: 10px;"
+        (click)="showPrompt()"
+      >
+        <ion-icon name="person-add" color="light"></ion-icon>&nbsp; Invite a
+        Friend
+      </ion-button>
+    </p>
+  </div>
+  <!-- <div style="text-align: center;margin-bottom: 10px;" *ngIf="userData2 != undefined"> -->
+
+  <!-- </div> -->
+  <!-- <div>
+        <button ion-button block color="light" (click)="toGallery()">Upload Pictures</button>
+      </div> -->
+
+  <div *ngFor="let im of albumsImages">
+    <img
+      src="{{gallerimgUrl + im.image_name}}"
+      class="gal-img"
+      (click)="viewImage(gallerimgUrl + im.image_name, im.caption)"
+      (press)="pressEvent($event, im.id)"
+    />
+  </div>
+</ion-content>
+
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

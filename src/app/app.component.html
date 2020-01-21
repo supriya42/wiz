@@ -1,0 +1,32 @@
+<ion-app  >
+  <ion-split-pane >
+    <ion-menu type="push">
+      <!-- <ion-header>
+        <ion-avatar class="center">
+          <img src="assets/icon/harry.jpg" align="right">
+        </ion-avatar>
+      </ion-header> -->
+      <ion-content >
+        <ion-label></ion-label>
+        <ion-list>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+            <ion-item *ngIf="p.title != 'Logout'" [routerDirection]="'root'" [routerLink]="[p.url]" detail="false">
+              <ion-icon slot="start" [name]="p.icon" ></ion-icon>
+              <ion-label>
+                {{ p.title }}
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="p.title == 'Logout'" (click)="logoutClicked()" auto-hide="false">
+              <ion-icon slot="start" [name]="p.icon"></ion-icon>
+                <ion-label>
+                  {{ p.title }}
+                </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

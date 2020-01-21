@@ -1,0 +1,27 @@
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+    &nbsp;
+    <ion-label size="5">
+      {{HeadText}}
+    </ion-label>
+  </ion-buttons>
+  <ion-buttons slot="primary">
+    <ion-button  (click)="GotoDiary()">
+      <ion-icon style="zoom:0.7;" name="home"></ion-icon>
+    </ion-button>
+    <ion-button (click)="GotoContact()">
+      <ion-icon style="zoom:0.7;" name="contact" ></ion-icon>
+    </ion-button>
+    <ion-button (click)="GotoMessage()">
+      <ion-icon style="zoom:0.7;"name="mail"></ion-icon>
+    </ion-button>
+    <ion-button (click)="GotoNotify()">
+      <ion-icon style="zoom:0.7;" name="notifications"></ion-icon>
+      <ion-badge color="danger" slot="end">{{count}}</ion-badge>
+    </ion-button>
+    <ion-button (click)="toSearch()" [hidden]="HideBtn">
+      <ion-icon style="zoom:0.7;" name="search"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>

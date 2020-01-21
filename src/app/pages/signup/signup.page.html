@@ -1,0 +1,41 @@
+<!--
+  Generated template for the SignupPage page.
+  -->
+<ion-content padding>
+  <div>
+    <p class="align">
+      <img src="assets/icon/logo.jpg" class="logo">
+    </p>
+
+    <ion-item>
+      <ion-label position="floating">Name</ion-label>
+      <ion-input type="text" [(ngModel)]="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Username</ion-label>
+      <ion-input type="text" [(ngModel)]="userName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" [(ngModel)]="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Confirm Password</ion-label>
+      <ion-input type="password" [(ngModel)]="repeatPassword"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" class="login-btn" (click)="signup(name, userName, email, password, repeatPassword)">
+      REGISTER</ion-button>
+  </div>
+
+</ion-content>
+<ion-footer style="    text-align: center;">
+  <ion-toolbar (click)="toLogin()">
+    <ion-title class="text">Already have an Account?</ion-title>
+  </ion-toolbar>
+</ion-footer>

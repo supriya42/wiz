@@ -1,0 +1,88 @@
+<ion-header>
+	<app-header [HeadText]="htext"></app-header>
+</ion-header>
+
+<ion-content>
+	<div *ngIf="userData != undefined">
+		<ion-grid>
+			<ion-row>
+				<ion-col size="5">
+					<div class="pic-div">
+						<img *ngIf="userData.user.profile_pic == null" [src]="noproimg"
+							class="profile-pic1">
+						<img *ngIf="userData.user.profile_pic != null"
+							src="{{profielImgUrl + userData.user.profile_pic}}" class="profile-pic1">
+						<!-- <ion-icon name="camera" class="img-icon myicon"></ion-icon> -->
+						<p>{{userData.user.display_name}}</p>
+					</div>
+				</ion-col>
+				<ion-col size="7">
+					<div class="details" style="font-size: 12px;">
+						<p><span >Country:</span> {{userData.user.country}}</p>
+						<p><span>Status:</span> {{userData.user.status}} </p>
+						<p><span>About Wizdiary:</span> {{userData.user.about_you}}</p>
+
+					</div>
+
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</div>
+
+	<div style="text-align: center;margin-bottom: 10px;" *ngIf="userData != undefined">
+
+		<ion-button class="btn" *ngIf="userData.follow == 0" size="small" style="width: 30%; font-size: 10px;"
+			(click)="followUser(userData.user.id)" [hidden]="hidefollow">
+			<ion-icon name="people"></ion-icon> &nbsp; Follow
+		</ion-button>
+
+		<ion-button class="btn" *ngIf="userData.follow == 1" size="small" style="width: 30%; font-size: 10px;"
+			(click)="unfollowUser(userData.user.id)" [hidden]="hideunfollow">
+			<ion-icon name="people">
+			</ion-icon> &nbsp; Unfollow
+		</ion-button>
+
+		<ion-button class="btn" *ngIf="userData.follow == 1" size="small" style="width: 30%; font-size: 10px;"
+			(click)="sendMessage(userData.user.id,userData.user.username)" [hidden]="hideunfollow">
+			<ion-icon name="mail"></ion-icon> &nbsp; Message
+		</ion-button>
+
+		<ion-button color="dark" size="small" style="width: 30%; font-size: 10px;" (click)="showPrompt()">
+			<ion-icon name="person-add" color="light"></ion-icon> &nbsp; Invite a Fried
+		</ion-button>
+
+	</div>
+	<div class="content-box">
+		<div class="new-div" *ngIf="userData != undefined">
+			<ion-grid>
+				<ion-row>
+					<ion-col>
+						<ion-icon name="people" class="myicon"></ion-icon> &nbsp; Followers &#8226;
+						{{userData.followersCount}}
+					</ion-col>
+					<ion-col>
+						<ion-icon name="people" class="myicon"></ion-icon> &nbsp; Following &#8226;
+						{{userData.followingsCount}}
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</div>
+
+		<div  *ngIf="userData != undefined">
+			<p>Company Name: {{userData.user.company_name}}</p>
+			<p>Startup Date: {{startDate}}</p>
+			<p>Designation: {{userData.user.designation}}</p>
+			<p>About Business: {{userData.user.about_business}}</p>
+			<p>Business Industry: {{userData.user.business_industry}}</p>
+			<p style="text-align: right;">
+				<ion-button fill="clear" style="color: #2AA440;" (click)="toPublicProfile(userData.user.username)">Click
+					to View Public Profile</ion-button>
+			</p>
+		</div>
+
+	</div>
+</ion-content>
+
+<ion-footer>
+	<app-footer></app-footer>
+  </ion-footer>

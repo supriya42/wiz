@@ -1,0 +1,194 @@
+<ion-header>
+  <app-header [HeadText]="htext"></app-header>
+<app-bill></app-bill>
+</ion-header>
+
+<ion-content>
+  
+
+  <div class="main content-box" [ngClass]="{'padding60': showBillBoard == false}">
+    <h3>Account Settings</h3>
+    <div class="myDiv">
+      <div class="myhead" [ngClass]="{'headColor': accountTab == true, 'myhead': accountTab !== true }"
+        (click)="changeTab('accountTab')">
+        Security Settings
+      </div>
+
+      <div class="myhead" [ngClass]="{'headColor': privacyTab == true, 'myhead': privacyTab !== true }"
+        (click)="changeTab('privacyTab')">
+        Privacy Settigns
+      </div>
+
+      <div class="myhead" [ngClass]="{'headColor': securityTab == true, 'myhead': securityTab !== true }"
+        (click)="changeTab('securityTab')">
+        Account Settings
+      </div>
+    </div>
+
+    <div *ngIf="accountTab == true">
+      <!-- <p><ion-icon name="lock"></ion-icon> a quck brown foc jumps over the lazy dog</p> -->
+      <ion-item>
+        <ion-label>
+          <ion-icon name="lock"></ion-icon>
+        </ion-label>
+        <ion-input type="password" placeholder="Old Password Here" [(ngModel)]="oldpassword"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="lock"></ion-icon>
+        </ion-label>
+        <ion-input type="password" placeholder="New Password Here " [(ngModel)]="newpassword"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="lock"></ion-icon>
+        </ion-label>
+        <ion-input type="password" placeholder="Confirm Password Here " [(ngModel)]="confirmpassword"></ion-input>
+      </ion-item>
+
+      <div class="btn">
+
+        <ion-grid>
+          <ion-row>
+            <ion-col size="5">
+              <ion-button class="my-button btn1" fill="block" size="small" text-capitalize
+                (click)="saveChanges(oldpassword, newpassword, confirmpassword)">Save changes
+              </ion-button>
+            </ion-col>
+            <ion-col size="5">
+              <ion-button  class="my-button btn1" text-capitalize color="dark" size="small" fill="block"
+                (click)="showConfirm(1)">Deactivate</ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+
+            <ion-col size="9">
+              <ion-button  class="my-button btn1" text-capitalize color="dark" size="small" fill="block" (click)="showConfirm(2)">Delete your
+                account</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+
+    <div *ngIf="privacyTab == true">
+      <ion-item>
+        <ion-label>
+          <ion-icon name="calendar"></ion-icon> Startup Date
+        </ion-label>
+        <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="myDate"></ion-datetime>
+      </ion-item>
+
+      <ion-radio-group [(ngModel)]="gender">
+        <ion-item>
+          <ion-label>
+            <ion-icon name="man"></ion-icon> Male
+          </ion-label>
+          <ion-radio value="male" color="secondary"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-icon name="woman"></ion-icon> Female
+          </ion-label>
+          <ion-radio value="female" color="secondary"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="globe"></ion-icon>
+        </ion-label>
+        <ion-input type="text" placeholder="Country" [(ngModel)]="country"></ion-input>
+      </ion-item>
+
+      <div class="btn">
+
+        <ion-grid>
+          <ion-row>
+            <ion-col size="5">
+              <ion-button text-capitalize class="my-button btn1" size="small" fill="block"
+                (click)="saveChangesPrivacy(myDate, gender, country)">Save changes</ion-button>
+            </ion-col>
+            <ion-col size="10">
+              <ion-button  class="my-button btn1" text-capitalize color="dark" size="small" fill="block" (click)="subjectCode()">Already have
+                Code</ion-button>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="10">
+              <ion-button  class="my-button btn1" text-capitalize color="dark" size="small" fill="block" (click)="showPrompt()">Subject Access
+                Request</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+
+
+      </div>
+    </div>
+
+    <div *ngIf="securityTab == true">
+      <div style="text-align: center;" (click)="takeImg()">
+        <img *ngIf="myuserImg == undefined" [src]="noproimg" class="profile-img">
+        <img *ngIf="myuserImg == undefined" src="{{profielImgUrl + myuserImg}}" class="profile-img"><br>
+        Upload Profile Picture
+      </div>
+      <ion-item>
+        <ion-label>
+          <ion-icon name="pin"></ion-icon>
+        </ion-label>
+        <ion-input type="text" placeholder="Address Here" [(ngModel)]="address"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="call"></ion-icon>
+        </ion-label>
+        <ion-input type="number" placeholder="Phone Number" [(ngModel)]="phoneNumber"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="person"></ion-icon>
+        </ion-label>
+        <ion-input type="text" placeholder="Display Name" [(ngModel)]="displayName"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="information-circle"></ion-icon>
+        </ion-label>
+        <ion-input type="text" placeholder="Something About You" [(ngModel)]="about"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="checkmark-circle"></ion-icon>
+        </ion-label>
+        <ion-input type="text" placeholder="Status" [(ngModel)]="profileStatus"></ion-input>
+      </ion-item>
+
+      <div class="btn">
+
+        <ion-grid>
+          <ion-row>
+            <ion-col size="5">
+              <ion-button text-capitalize class="my-button btn1" size="small" fill="block"
+                (click)="saveSettings(address, phoneNumber, displayName, about, profileStatus)">
+                Save changes</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </div>
+    </div>
+
+
+  </div>
+</ion-content>
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

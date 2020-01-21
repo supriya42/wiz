@@ -1,0 +1,24 @@
+<ion-header translucent style="background-color: #0e4e19;">
+  <app-header [HeadText]="htext" [HideBtn]="hideSearch"></app-header>
+</ion-header>
+
+<ion-content>
+  <!-- <ion-searchbar (click)="filterList($event)" [(ngModel)]="search_term"></ion-searchbar> -->
+  <ion-item>
+      <!-- <ion-label position="floating">Floating Label</ion-label> -->
+      <ion-input placeholder="Search" [(ngModel)]="search_term"></ion-input>
+      <ion-icon name="search" slot="end" (click)="filterList($event)"></ion-icon>
+    </ion-item>
+  <ion-item *ngFor="let search of searchList" (click)="DisplayPublicPro(search.username)">
+      <ion-avatar class="avatar" slot="start">
+          <img src="{{profileImgUrl + search.profile_pic}}" class="post-logo" style="margin-top: -2%;"
+            *ngIf="search.profile_pic != null || search.profile_pic != undefined">
+          <img [src]="noproimg" class="post-logo" style="margin-top: -2%;"
+            *ngIf="search.profile_pic == null || search.profile_pic == undefined">
+        </ion-avatar>
+    <ion-label>{{ search.name }}</ion-label>
+  </ion-item>
+</ion-content>
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

@@ -1,0 +1,24 @@
+.logo {
+  margin-top: 10%;
+  width: 150px;
+  height: 50px;
+}
+.align {
+  text-align: center;
+}
+.login-btn {
+  --background: var(--ion-color-btn);
+  margin-top: 5%;
+  color: white;
+}
+ion-toolbar div {
+  background-color: transparent !important;
+}
+.text {
+  font-size: 15px;
+}
+ion-toolbar {
+  --background:#2aa440;
+  // --ion-color-base: transparent !important;
+  --color: white;
+}

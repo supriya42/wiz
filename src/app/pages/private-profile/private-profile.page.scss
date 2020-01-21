@@ -1,0 +1,82 @@
+ion-toolbar {
+    --background:#2aa440;
+    // --ion-color-base: transparent !important;
+    --color: white;
+  }
+  .profile-pic1{
+		width: 120px;
+    	border-radius: 50%;
+	}
+	.pic-div{
+		text-align: center;
+	}
+	.img-icon{
+	    font-size: 50px;
+	    float: right;
+	    margin-top: 50%;
+	    z-index: 9999;
+	    margin-left: -25%;
+	    position: relative;
+	}
+	.new-div{
+		background-color: #ececec;
+	    line-height: 20px;
+		text-indent: 10px;
+		font-size: 12px;
+
+	}
+	ion-icon{
+		font-size: 15px;
+	}
+	.myicon{
+		color: #2AA440;
+		
+	}
+	.profile-pic{
+        width: 70px;
+        height: 70px;
+       
+    }
+    .profilepic-div{
+        margin-top: 2%;
+        margin-left: 4%;
+    }
+
+    .slider-p{
+		position: absolute;
+		width: 100%;
+		padding: 10px 20px;
+		margin: 0;
+		bottom: 0;
+		line-height: 43px;
+	}
+	.cam-icon {
+	    background: #4aa541;
+	    border-radius: 35px;
+	    color: #fff;
+	    width: 45px;
+	    height: 45px;
+	    line-height: 45px;
+		font-size: 24px !important;
+		margin-top: 13px;
+	}
+	.content-box {
+		padding-right: 20px;
+		padding-left: 20px;
+	}
+
+	.details{
+		p {
+			margin: 2px;
+			// margin-top: 10px;;
+			span{
+			color: lightgray;
+		}
+		}
+
+	}
+	.btn {
+		--background: var(--ion-color-btn);
+		//  margin-top: 15%;
+		 color: white;
+	   }
